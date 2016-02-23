@@ -7,6 +7,7 @@
 
 -export([process_csv_file_with/2, process_csv_string_with/2]).
 -export([process_csv_file_with/3, process_csv_string_with/3]).
+-export([process_csv_binary_with/2, process_csv_binary_with/3]).
 
 %% @doc parse a csv file and process each parsed row with the RowFunction
 process_csv_file_with(IoDevice, RowFunction) ->
@@ -25,6 +26,11 @@ process_csv_file_with(IoDevice, RowFunction, InitState) ->
 %% and the initial state InitState
 process_csv_string_with(String, RowFunction, InitState) ->
     do_it(String, RowFunction, stream_from_string, InitState).
+
+process_csv_binary_with(Bin, RowFunction) ->
+    process_csv_binary_with(Bin, RowFunction, []).
+process_csv_binary_with(Bin, RowFunction, InitState) ->
+    do_it(Bin, RowFunction, stream_from_binary, InitState).
 
 %
 % Internal API
