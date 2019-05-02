@@ -1,13 +1,14 @@
+REBAR ?= ./rebar
 
 .PHONY: deps doc
 
 all: deps compile
 
 compile:
-	@./rebar compile
+	@$(REBAR) compile
 
 deps:
-	@./rebar get-deps
+	@$(REBAR) get-deps
 
-clean: 
-	@./rebar clean
+clean:
+	@$(REBAR) clean
